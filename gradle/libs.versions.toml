@@ -1,0 +1,32 @@
+[versions]
+kotlin = "1.9.10"
+java = "20"
+spring-boot = "3.1.5"
+
+[libraries]
+# Kotlin Standard Library JDK 8 extension
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin"}
+# Runtime API for Kotlin reflection - required by Spring
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin"}
+
+# Starters are a set of convenient dependency descriptors that you can include in your application.
+# `web` is for building RESTful applications
+# `web:3.1.4` provides transitive vulnerable dependencies (CVE-2022-1471 and others) through snakeyml,
+# it is not exploitable, as Spring only parses the application.yml and not user provided YAML files.
+# The vulnerable dependency is going to be patched in `web:3.2.0`
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot"}
+# `test` is for testing Spring Boot applications
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot"}
+# provides developer tools for Spring Boot, such as automatic restart if an underlying file changes
+spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring-boot"}
+
+[bundles]
+
+[plugins]
+# Kotlin Plugin for Gradle
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+# Kotlin Spring compiler plugin
+kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+
+# Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that can you can "just run".
+springframework-boot = { id ="org.springframework.boot", version.ref = "spring-boot"}
